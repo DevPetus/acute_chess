@@ -1,1 +1,24 @@
-<p>register works!</p>
+<div class="registerCtn">
+
+    <mat-card class="registerCard">
+        <mat-card-title>Register</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="submit()" class="registerForm">
+                <mat-form-field appearance="outline">
+                    <input type="text" matInput placeholder="Username" formControlName="username">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input type="password" matInput placeholder="Password" formControlName="password">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input type="password" matInput placeholder="Confirm Password" formControlName="passwordConfirm">
+                </mat-form-field>
+
+                <div class="button">
+                    <button type="submit" mat-button>Register</button>
+                </div>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
