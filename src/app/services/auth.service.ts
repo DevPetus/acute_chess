@@ -9,8 +9,11 @@ export class AuthService {
 
   constructor() { }
 
-  login() {
-    this.auth = true;
+  login(data: { username: string, password: string }) {
+    if (data.username === 'admin' && data.password === 'admin') {
+      this.auth = true;
+    } else { this.auth = false; }
+    return of(this.auth);
   }
 
   logout() {

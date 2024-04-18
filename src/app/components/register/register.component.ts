@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input'
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -35,7 +36,8 @@ export class RegisterComponent {
     return matched ? null : { notSame: true }
   }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+    public router: Router) {
     // Setting the custom validator to form
     this.form.setValidators(this.checkPasswords);
   }

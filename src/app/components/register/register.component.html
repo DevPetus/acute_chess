@@ -1,7 +1,10 @@
 <div class="registerCtn">
 
     <mat-card class="registerCard">
-        <mat-card-title>Register</mat-card-title>
+        <mat-card-header class="cardHeader">
+            <mat-card-title>Register</mat-card-title>
+            <button (click)="this.router.navigate(['/','login'])" color="accent" mat-flat-button>Login</button>
+        </mat-card-header>
         <mat-card-content>
             <form [formGroup]="form" (ngSubmit)="submit()" class="registerForm">
                 <mat-form-field appearance="outline">
@@ -24,7 +27,7 @@
                 </mat-form-field>
 
                 <div class="button">
-                    <button [disabled]="!form.valid" type="submit" mat-button>Register</button>
+                    <button [disabled]="!form.valid" type="submit" mat-stroked-button>Register</button>
                 </div>
             </form>
         </mat-card-content>

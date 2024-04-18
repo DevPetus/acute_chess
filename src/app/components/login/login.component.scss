@@ -7,9 +7,17 @@
 
 .loginCard {
     padding: 1em;
-    width: 20em;
+    width: 25em;
 }
 
 .loginForm {
+    padding: 1em;
+}
+
+.cardHeader {
+    justify-content: space-between;
+}
+
+.cardContent {
     padding: 1em;
 }

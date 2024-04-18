@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input'
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,15 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(public router: Router) { }
+  constructor(public router: Router,
+    private authService: AuthService) { }
 
   submit() {
-    console.log(this.form.value)
+    this.authService.login(this.form.value).subscribe((res: any) => {
+      console.log(res);
+      if (res) {
+        this.router.navigateByUrl('/')
+      }
+    });
   }
 }
