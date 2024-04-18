@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class AuthService {
 
   logout() {
     this.auth = false;
+  }
+
+  register(data: object) {
+    return of("we tkt");
   }
 
   get isAuth(): boolean {
