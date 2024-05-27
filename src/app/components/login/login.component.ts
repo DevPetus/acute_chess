@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule,
+  imports: [MatButtonModule, MatIconModule, CommonModule,
     MatFormFieldModule, MatCardModule, ReactiveFormsModule, MatInputModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -28,9 +29,10 @@ export class LoginComponent {
 
   submit() {
     this.authService.login(this.form.value).subscribe((res: any) => {
-      console.log(res);
       if (res) {
         this.router.navigateByUrl('/')
+      } else {
+        this.form.setErrors({ invalidCredentials: true });
       }
     });
   }

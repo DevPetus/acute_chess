@@ -1,25 +1,52 @@
 <div class="loginCtn">
-
   <mat-card class="loginCard">
     <mat-card-header class="cardHeader">
       <mat-card-title>Login</mat-card-title>
-      <button (click)="this.router.navigate(['/','register'])" color="accent" mat-flat-button>Register</button>
+      <button
+        (click)="this.router.navigate(['/', 'register'])"
+        color="accent"
+        mat-flat-button
+      >
+        Register
+      </button>
     </mat-card-header>
     <mat-card-content class="cardContent">
       <form [formGroup]="form" (ngSubmit)="submit()" class="loginForm">
         <mat-form-field appearance="outline">
-          <input type="text" matInput placeholder="Username" formControlName="username">
+          <input
+            type="text"
+            matInput
+            placeholder="Username"
+            formControlName="username"
+          />
           <mat-icon matPrefix>account_circle</mat-icon>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <input type="password" matInput placeholder="Password" formControlName="password">
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
           <mat-icon matPrefix>key</mat-icon>
         </mat-form-field>
-
+        <mat-error
+          class="error"
+          *ngIf="form.hasError('invalidCredentials')"
+          color="warn"
+        >
+          Invalid username or password
+        </mat-error>
         <div class="button">
-          <button [disabled]="!form.valid" type="submit" mat-stroked-button>Login</button>
+          <button
+            [disabled]="!form.valid"
+            type="submit"
+            mat-flat-button
+            color="accent"
+          >
+            Login
+          </button>
         </div>
-
       </form>
     </mat-card-content>
   </mat-card>

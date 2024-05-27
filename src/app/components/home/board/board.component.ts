@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-board',
@@ -7,6 +7,17 @@ import { Component } from '@angular/core';
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
-export class BoardComponent {
+export class BoardComponent implements AfterViewInit {
+
+  board = document.getElementById('board');
+
+
+  ngAfterViewInit(): void {
+    if (this.board) {
+
+      this.board.scrollIntoView({ behavior: 'smooth' });
+    }
+    else (console.log('board not found'))
+  }
 
 }

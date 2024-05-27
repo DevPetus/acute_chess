@@ -1,35 +1,68 @@
 <div class="registerCtn">
+  <mat-card class="registerCard">
+    <mat-card-header class="cardHeader">
+      <mat-card-title>Register</mat-card-title>
+      <button
+        (click)="this.router.navigate(['/', 'login'])"
+        color="accent"
+        mat-flat-button
+      >
+        Login
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" class="registerForm">
+        <mat-form-field appearance="outline">
+          <input
+            type="text"
+            matInput
+            placeholder="Username"
+            formControlName="username"
+          />
+          @if (form.get('username')?.invalid) {
+          <mat-error>Minimum Length is 4</mat-error>
+          }
+          <mat-error *ngIf="form.hasError('minLength')"
+            >Minimum Length is 4 characters</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            formControlName="password"
+          />
+          @if (form.get('password')?.invalid) {
+          <mat-error>Minimum Length is 4</mat-error>
+          }
+          <mat-error *ngIf="form.hasError('minLength')"
+            >Minimum Length is 4 characters</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input
+            type="password"
+            matInput
+            placeholder="Confirm Password"
+            formControlName="passwordConfirm"
+          />
+          <mat-error *ngIf="form.hasError('notSame')"
+            >Passwords do not match</mat-error
+          >
+        </mat-form-field>
 
-    <mat-card class="registerCard">
-        <mat-card-header class="cardHeader">
-            <mat-card-title>Register</mat-card-title>
-            <button (click)="this.router.navigate(['/','login'])" color="accent" mat-flat-button>Login</button>
-        </mat-card-header>
-        <mat-card-content>
-            <form [formGroup]="form" (ngSubmit)="submit()" class="registerForm">
-                <mat-form-field appearance="outline">
-                    <input type="text" matInput placeholder="Username" formControlName="username">
-                    @if (form.get('username')?.invalid) {
-                    <mat-error>Minimum Length is 4</mat-error>
-                    }
-                    <mat-error *ngIf="form.hasError('minLength')">Minimum Length is 4 characters</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <input type="password" matInput placeholder="Password" formControlName="password">
-                    @if (form.get('password')?.invalid) {
-                    <mat-error>Minimum Length is 4</mat-error>
-                    }
-                    <mat-error *ngIf="form.hasError('minLength')">Minimum Length is 4 characters</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <input type="password" matInput placeholder="Confirm Password" formControlName="passwordConfirm">
-                    <mat-error *ngIf="form.hasError('notSame')">Passwords do not match</mat-error>
-                </mat-form-field>
-
-                <div class="button">
-                    <button [disabled]="!form.valid" type="submit" mat-stroked-button>Register</button>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
+        <div class="button">
+          <button
+            [disabled]="!form.valid"
+            type="submit"
+            mat-flat-button
+            color="accent"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

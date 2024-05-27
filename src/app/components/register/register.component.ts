@@ -47,7 +47,12 @@ export class RegisterComponent {
     console.log(this.form.value);
     console.log(this.form.hasError('notSame'));
     this.authService.register(this.form.value).subscribe((res: any) => {
-      console.log(res);
+      if (res) {
+        this.router.navigateByUrl('/');
+      }
+      else {
+        this.form.setErrors({ invalidCredentials: true });
+      }
     });
   }
 
