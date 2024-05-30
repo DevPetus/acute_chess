@@ -1,0 +1,30 @@
+.cardCtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profileUsername {
+  font-size: 2em;
+}
+
+.profileSubtitle {
+  font-size: 1.3em;
+}
+
+.profileDescription {
+  font-size: 1.2em;
+}
+
+.profileCard {
+  width: 30em;
+  justify-content: center;
+}
+
+.profilePicture {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+  height: 5em;
+  width: 5em;
+}
