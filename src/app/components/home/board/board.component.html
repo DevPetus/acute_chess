@@ -3,4 +3,12 @@
   src="http://10.31.35.170:5173/"
   frameborder="0"
   style="width: 100vw; height: 100vh"
+  *ngIf="board != null; else noBoard"
 ></iframe>
+<ng-template #noBoard>
+  <div class="noBoardWarning">
+    <h1>Erreur</h1>
+    <p>Le serveur de jeu n'est pas disponible</p>
+    <p>ERREUR 503</p>
+  </div>
+</ng-template>

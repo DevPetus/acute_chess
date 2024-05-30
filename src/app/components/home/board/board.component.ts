@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
@@ -17,7 +18,10 @@ export class BoardComponent implements AfterViewInit {
 
       this.board.scrollIntoView({ behavior: 'smooth' });
     }
-    else (console.log('board not found'))
+    else {
+      this.board = null;
+      console.log('board not found')
+    }
   }
 
 }

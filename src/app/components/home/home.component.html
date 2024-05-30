@@ -1,5 +1,3 @@
-
-<app-menu></app-menu>
-<p>home works!</p>
-<app-board></app-board>
-
+<app-menu (emitter)="changeWindow($event)"></app-menu>
+<app-board *ngIf="selectedWindow === 'board'"></app-board>
+<app-profile *ngIf="selectedWindow === 'profile'"></app-profile>
