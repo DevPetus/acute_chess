@@ -22,6 +22,7 @@
     "@angular/router": "^17.2.0",
     "@types/mysql": "^2.15.26",
     "chess.js": "^1.0.0-beta.8",
+    "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

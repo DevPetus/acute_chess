@@ -29,7 +29,7 @@ export class LoginComponent {
 
   submit() {
     this.authService.login(this.form.value).subscribe((res: any) => {
-      if (res) {
+      if (this.authService.isAuth) {
         this.router.navigateByUrl('/')
       } else {
         this.form.setErrors({ invalidCredentials: true });
