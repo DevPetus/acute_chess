@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { of } from 'rxjs';
@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   login(loginData: { username: string, password: string }) {
-    this.http.put('http://10.31.37.170:8000/login', loginData).subscribe((res) => {
+    this.http.post('http://localhost:8000/auth/', loginData).subscribe((res) => {
       console.log(res);
     });
     if (loginData.username === 'admin' && loginData.password === 'admin') {
