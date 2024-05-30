@@ -1,10 +1,16 @@
-import { HttpInterceptorFn, withInterceptors } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('token');
-
-  if (token) {
-    req.headers.set('Authorization', `Bearer ${token}`);
+@Injectable()
+export class tokenInterceptor implements HttpInterceptor {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+    console.log(request);
+    return next.handle(request);
   }
-  return next(req);
-};
+}
