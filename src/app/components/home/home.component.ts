@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardComponent } from './board/board.component';
-import { ProfileComponent } from './profile/profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { MenuComponent } from './menu/menu.component';
 
 @Component({
