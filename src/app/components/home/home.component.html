@@ -1,3 +1,8 @@
-<app-menu (emitter)="changeWindow($event)"></app-menu>
-<app-board *ngIf="selectedWindow === 'board'"></app-board>
-<app-profile *ngIf="selectedWindow === 'profile'"></app-profile>
+<div class="homeCtn">
+  <app-menu (emitter)="changeWindow($event)"></app-menu>
+  <app-board *ngIf="selectedWindow === 'board'"></app-board>
+  <app-profile
+    *ngIf="selectedWindow === 'profile'"
+    class="profileCtn"
+  ></app-profile>
+</div>

@@ -1,32 +1,57 @@
-<div class="cardCtn">
-  <mat-card class="profileCard">
-    <mat-card-header>
-      <div mat-card-avatar class="profilePicture"></div>
-      <mat-card-title class="profileUsername">Username</mat-card-title>
-      <mat-card-subtitle class="profileSubtitle">
-        Profile subtitle
-      </mat-card-subtitle>
-      <button mat-icon-button aria-label="Edit icon" (click)="editFlip()">
-        <mat-icon>edit</mat-icon>
-      </button>
-    </mat-card-header>
-    <mat-card-content
-      *ngIf="editMode == false; else editProfile"
-      class="profileDescription"
-    >
-      {{ profileDescription }}
-    </mat-card-content>
-    <ng-template #editProfile>
-      <mat-form-field>
-        <textarea
-          matInput
-          type="text"
-          [value]="profileDescription"
-          (keyup)="onKey($event)"
-          (keyup.enter)="editFlip()"
-        >
-        </textarea>
-      </mat-form-field>
-    </ng-template>
-  </mat-card>
+<div class="profileCtn">
+  <div class="cardCtn">
+    <mat-card class="profileCard">
+      <mat-card-header>
+        <div mat-card-avatar class="profilePicture"></div>
+        <mat-card-title class="profileUsername">Username</mat-card-title>
+        <mat-card-subtitle class="profileSubtitle">
+          Profile subtitle
+        </mat-card-subtitle>
+        <button mat-icon-button aria-label="Edit icon" (click)="editFlip()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content
+        *ngIf="editMode == false; else editProfile"
+        class="profileDescription"
+      >
+        {{ profileDescription }}
+      </mat-card-content>
+      <ng-template #editProfile>
+        <mat-form-field>
+          <textarea
+            matInput
+            type="text"
+            [value]="profileDescription"
+            (keyup)="onKey($event)"
+            (keyup.enter)="editFlip()"
+          >
+          </textarea>
+        </mat-form-field>
+      </ng-template>
+    </mat-card>
+  </div>
+
+  <div class="leaderboard">
+    <!-- Leaderboard displaying players with best ELO -->
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Leaderboard</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="leaderboardCard">
+        <table class="leaderboardTable">
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>ELO</th>
+          </tr>
+          <tr *ngFor="let player of playerList; let index = index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.elo }}</td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
