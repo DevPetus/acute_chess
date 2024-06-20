@@ -72,7 +72,7 @@ export class AuthService {
     this.http.put('http://localhost:8000/auth', registerData).subscribe((res) => {
       console.log(res);
     });
-    return of("we tkt")
+    return of("registered")
   }
 
   get isAuth(): boolean {

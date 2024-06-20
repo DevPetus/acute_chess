@@ -44,8 +44,6 @@ export class RegisterComponent {
 
   /** Submit button call */
   submit() {
-    console.log(this.form.value);
-    console.log(this.form.hasError('notSame'));
     this.authService.register(this.form.value).subscribe((res: any) => {
       if (res) {
         this.router.navigateByUrl('/');

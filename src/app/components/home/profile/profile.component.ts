@@ -3,21 +3,28 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SafePipe } from '../../../pipe/safe.pipe';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [MatCardModule, MatIconModule, MatButtonModule, CommonModule, MatInputModule, MatFormFieldModule],
+  imports: [MatCardModule, MatIconModule, MatButtonModule, CommonModule, MatInputModule, MatFormFieldModule, MatListModule, MatDividerModule],
   providers: [SafePipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
   profileDescription: string = 'This is a profile description';
+  //edit Mode for profile description
   editMode: boolean = false;
+  //add Mode for notes
+  addMode: boolean = false;
+  newNote: string = "";
+  notes: string[] = [];
 
   // mock player list with name and ELO containing 50 players
   playerList = [
@@ -71,10 +78,26 @@ export class ProfileComponent implements OnInit {
     this.sortByElo();
   }
 
-  onKey(event: any) {
+  onKeyDescription(event: any) {
     this.profileDescription = event.target.value;
     //@TODO : make http request to update profile description
 
+  }
+
+  editFlipDescription() {
+    this.editMode = !this.editMode;
+    this.profileDescription = this.safePipe.transform(this.profileDescription);
+    this.profileDescription = this.profileDescription.replace(/&#10;/g, "");
+  }
+
+  onKeyNote(event: any) {
+    this.newNote = event.target.value;
+    //@TODO : make http request to update Notes
+  }
+
+  editFlipNote() {
+    if (this.addMode == true) { this.addNote(); }
+    this.addMode = !this.addMode;
   }
 
   getRandomElo() {
@@ -85,9 +108,14 @@ export class ProfileComponent implements OnInit {
     this.playerList.sort((a, b) => b.elo - a.elo);
   }
 
-  editFlip() {
-    this.editMode = !this.editMode;
-    this.profileDescription = this.safePipe.transform(this.profileDescription);
-    this.profileDescription = this.profileDescription.replace(/&#10;/g, "");
+
+  addNote() {
+    this.notes.push(this.newNote);
+    this.newNote = "";
+
+  }
+
+  deleteNote(index: number) {
+    this.notes.splice(index, 1);
   }
 }

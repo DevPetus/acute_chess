@@ -7,7 +7,11 @@
         <mat-card-subtitle class="profileSubtitle">
           Profile subtitle
         </mat-card-subtitle>
-        <button mat-icon-button aria-label="Edit icon" (click)="editFlip()">
+        <button
+          mat-icon-button
+          aria-label="Edit icon"
+          (click)="editFlipDescription()"
+        >
           <mat-icon>edit</mat-icon>
         </button>
       </mat-card-header>
@@ -23,8 +27,8 @@
             matInput
             type="text"
             [value]="profileDescription"
-            (keyup)="onKey($event)"
-            (keyup.enter)="editFlip()"
+            (keyup)="onKeyDescription($event)"
+            (keyup.enter)="editFlipDescription()"
           >
           </textarea>
         </mat-form-field>
@@ -45,12 +49,51 @@
             <th>Username</th>
             <th>ELO</th>
           </tr>
-          <tr *ngFor="let player of playerList; let index = index">
+          <tr
+            *ngFor="let player of playerList; let index = index"
+            class="leaderboardList"
+          >
             <td>{{ index + 1 }}</td>
             <td>{{ player.name }}</td>
             <td>{{ player.elo }}</td>
           </tr>
         </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="notesCtn">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Notes</mat-card-title>
+        <button mat-icon-button aria-label="Add icon" (click)="editFlipNote()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <textarea
+            *ngIf="addMode == true"
+            matInput
+            type="text"
+            [value]="newNote"
+            (keyup)="onKeyNote($event)"
+            (keyup.enter)="editFlipNote()"
+          >
+          </textarea>
+          <div *ngFor="let note of notes; let index = index">
+            <mat-divider></mat-divider>
+            <p>{{ note }}</p>
+            <button
+              mat-icon-button
+              aria-label="Delete icon"
+              style="size: 1em"
+              (click)="deleteNote(index)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-list>
       </mat-card-content>
     </mat-card>
   </div>

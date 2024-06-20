@@ -41,3 +41,12 @@
   height: 5em;
   width: 5em;
 }
+
+.notesCtn {
+  max-width: 20em;
+  text-wrap: wrap;
+}
+
+.leaderboardList:nth-child(even) {
+  background-color: #f2f2f2;
+}

@@ -20,7 +20,7 @@ export class BoardComponent implements AfterViewInit {
     }
     else {
       this.board = null;
-      console.log('board not found')
+      console.log('board not found');
     }
   }
 
