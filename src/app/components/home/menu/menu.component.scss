@@ -1,10 +1,8 @@
-.quickbar-label {
-}
-
 .quickbar-button-row {
+  background-color: #b5b2c2;
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-bottom: 2em;
 }
 
 .quickbar-button-row .mat-mdc-button-base {
@@ -24,5 +22,5 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #8a8894;
 }

@@ -1,14 +1,16 @@
-<iframe
-  #board
-  src="http://losvernos.com:8888/"
-  frameborder="0"
-  style="width: 100vw; height: 100vh"
-  ></iframe>
-  <!-- *ngIf="board != null; else noBoard" -->
-<ng-template #noBoard>
-  <div class="noBoardWarning">
-    <h1>Erreur</h1>
-    <p>Le serveur de jeu n'est pas disponible</p>
-    <p>ERREUR 503</p>
-  </div>
-</ng-template>
+<div class="boardCtn">
+  <iframe
+    #board
+    src="http://losvernos.com:8888/"
+    frameborder="0"
+    style="width: 100vw; height: 100vh"
+    ></iframe>
+    <!-- *ngIf="board != null; else noBoard" -->
+  <ng-template #noBoard>
+    <div class="noBoardWarning">
+      <h1>Erreur</h1>
+      <p>Le serveur de jeu n'est pas disponible</p>
+      <p>ERREUR 503</p>
+    </div>
+  </ng-template>
+</div>
