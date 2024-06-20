@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
+import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -9,13 +9,14 @@ import { Observable, of } from 'rxjs';
 })
 export class AuthService {
   private auth: boolean = false;
+  private token: JwtPayload | null = null;
 
   constructor(private http: HttpClient) {
     this.login(undefined)
   }
 
   login(loginData: { username: string, password: string } | undefined): Observable<Object> {
-    let token = this.getToken();
+    this.token = this.getToken();
     
     this.auth = false;
     if (loginData?.username === 'admin' && loginData?.password === 'admin') {
@@ -23,17 +24,17 @@ export class AuthService {
       return of({ username: 'admin', password: 'admin' });
     }
 
-    if (token == null && loginData !== undefined) {
+    if (this.token == null && loginData !== undefined) {
       // création d'un nouveau token
       this.http.post('http://localhost:8000/auth/', loginData).subscribe((res: any) => {
         localStorage.setItem('token', res.access_token);
-      });
-      token=this.getToken();
+        this.token = this.getToken();
+      })
     }
 
-    if (token !== null) {
+    if (this.token !== null) {
       this.auth = true;
-      return of(token);
+      return of(this.token);
     }
 
     this.auth = false;
@@ -67,8 +68,8 @@ export class AuthService {
   }
 
 
-  register(registerData: object) {
-    this.http.post('http://10.31.37.170:8000/register', registerData).subscribe((res) => {
+  register(registerData: { password: string, passwordConfirm: string, username: string } | undefined) {
+    this.http.put('http://localhost:8000/auth', registerData).subscribe((res) => {
       console.log(res);
     });
     return of("we tkt")

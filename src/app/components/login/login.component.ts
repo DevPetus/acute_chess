@@ -31,9 +31,10 @@ export class LoginComponent {
     this.authService.login(this.form.value).subscribe((res: any) => {
       if (this.authService.isAuth) {
         this.router.navigateByUrl('/')
-      } else {
-        this.form.setErrors({ invalidCredentials: true });
       }
+      // else {
+      //   this.form.setErrors({ invalidCredentials: true });
+      // }
     });
   }
 }
