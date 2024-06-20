@@ -26,8 +26,9 @@ export class AuthService {
     if (token == null && loginData !== undefined) {
       // création d'un nouveau token
       this.http.post('http://localhost:8000/auth/', loginData).subscribe((res: any) => {
-        localStorage.setItem('token', JSON.stringify(res.access_token));
+        localStorage.setItem('token', res.access_token);
       });
+      token=this.getToken();
     }
 
     if (token !== null) {
@@ -53,7 +54,8 @@ export class AuthService {
 
     if (token !== null) {
       let expiry = jwtDecode(token).exp;
-      if (expiry !== undefined && expiry < Date.now()) {
+      console.log(expiry, Date.now());
+      if (expiry !== undefined && expiry > Date.now()) {
         localStorage.removeItem('token');
         return null
       }
